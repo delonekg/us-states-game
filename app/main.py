@@ -40,14 +40,10 @@ while len(guessed_states) <= 50:
             guessed_states.append(answer)
 
 # Generate a CSV file which contains all the states the user needs to learn
-states_to_learn = []
+states_to_learn = [state for state in state_names if state not in guessed_states]
 df_dict = {
     "State": states_to_learn
 }
 
-for state in state_names:
-    if state not in guessed_states:
-        states_to_learn.append(state)
-
 df = pandas.DataFrame(df_dict)
-df.to_csv("states_to_learn.csv")
+df.to_csv("states_to_learn.csv") 
